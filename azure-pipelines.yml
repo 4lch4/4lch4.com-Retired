@@ -10,17 +10,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker Hub - 4lch4'
-    repository: '4lch4'
+    repository: '4lch4/app_homepage'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     tags: |
-    '$(Build.BuildId)'
-    'latest'
+    $(Build.BuildId)
+    latest
