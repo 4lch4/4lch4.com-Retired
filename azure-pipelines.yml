@@ -11,9 +11,7 @@ steps:
     repository: '4lch4/app_homepage'
     command: 'build'
     Dockerfile: '**/Dockerfile'
-    tags: |
-    '$(Build.BuildId)'
-    'latest'
+    tags: '$(Build.BuildId):latest'
 
 - task: Docker@2
   inputs:
