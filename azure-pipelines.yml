@@ -16,6 +16,4 @@ steps:
     repository: '4lch4/app_homepage'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: |
-    $(Build.BuildId)
-    latest
+    tags: '$(Build.BuildId), latest'
