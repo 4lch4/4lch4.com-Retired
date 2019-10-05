@@ -11,11 +11,11 @@ steps:
     repository: '4lch4/app_homepage'
     command: 'build'
     Dockerfile: '**/Dockerfile'
+    tags: '$(Build.BuildId)'
+    arguments: '-t app_homepage:latest'
 
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker Hub - 4lch4'
     repository: '4lch4/app_homepage'
     command: 'push'
-    tags: '$(Build.BuildId)'
-    arguments: '-t app_homepage:latest'
