@@ -5,6 +5,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: Npm@1
+  displayName: 'Install dependencies'
+  inputs:
+    command: custom
+    customCommand: 'ci'
+- task: Npm@1
+  displayName: 'Build dist folder'
+  inputs:
+    command: 'custom'
+    customCommand: 'run build:prod'
 - task: Docker@2
   displayName: 'Build Docker image'
   inputs:
