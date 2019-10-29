@@ -13,4 +13,4 @@ COPY ./dist /usr/share/nginx/html/
 # Expose the ports we need and setup the ENTRYPOINT w/ the default argument
 # to be pass in.
 EXPOSE 80 443
-# ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
