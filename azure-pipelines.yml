@@ -10,11 +10,13 @@ steps:
   inputs:
     command: custom
     customCommand: 'ci'
+
 - task: Npm@1
   displayName: 'Build dist folder'
   inputs:
     command: 'custom'
     customCommand: 'run build:prod'
+
 - task: Docker@2
   displayName: 'Build Docker image'
   inputs:
@@ -32,3 +34,10 @@ steps:
     containerRegistry: 'Docker Hub - 4lch4'
     repository: '4lch4/app_homepage'
     command: 'push'
+
+- task: PowerShell@2
+  displayName: 'Send Discord Webhook Message'
+  inputs:
+    targetType: filePath
+    filePath: ./ci/DiscordWebhook.ps1
+    errorActionPreference: continue
