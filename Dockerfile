@@ -1,16 +1,12 @@
+FROM node:alpine AS builder
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install && \
+    npm run build
+
 FROM nginx:alpine
-LABEL author="4lch4"
 
-# Nginx Configs
-COPY nginx.conf /etc/nginx/nginx.conf
-
-WORKDIR /usr/share/nginx/html
-COPY ./dist .
-
-# WORKDIR  /usr/share/nginx/html
-COPY ./dist /usr/share/nginx/html/
-
-# Expose the ports we need and setup the ENTRYPOINT w/ the default argument
-# to be pass in.
-EXPOSE 80 443
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+COPY --from=builder /app/dist/* /usr/share/nginx/html/
